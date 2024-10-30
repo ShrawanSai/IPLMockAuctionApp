@@ -1,0 +1,88 @@
+
+<!-- templates/auctioneer.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auctioneer Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl">Auctioneer Dashboard</h1>
+            <a href="{{ url_for('progress') }}" class="bg-green-500 text-white px-4 py-2 rounded">
+                View Progress
+            </a>
+        </div>
+        
+        <form action="{{ url_for('submit_player') }}" method="post" class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="mb-4">
+                    <label class="block mb-2">Team</label>
+                    <select name="team" required class="w-full p-2 border rounded">
+                        {% for team, info in teams.items() %}
+                            <option value="{{ team }}">{{ team }} (Cr.₹{{ info.purse }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block mb-2">Player Name</label>
+                    <input type="text" name="player_name" required class="w-full p-2 border rounded">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block mb-2">Indian Player?</label>
+                    <div>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="is_indian" value="yes" checked>
+                            <span class="ml-2">Yes</span>
+                        </label>
+                        <label class="inline-flex items-center ml-4">
+                            <input type="radio" name="is_indian" value="no">
+                            <span class="ml-2">No</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block mb-2">Capped Player?</label>
+                    <div>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="is_capped" value="yes" checked>
+                            <span class="ml-2">Yes</span>
+                        </label>
+                        <label class="inline-flex items-center ml-4">
+                            <input type="radio" name="is_capped" value="no">
+                            <span class="ml-2">No</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block mb-2">Nationality</label>
+                    <input type="text" name="nationality" value="Indian" required class="w-full p-2 border rounded">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block mb-2">Category</label>
+                    <select name="category" required class="w-full p-2 border rounded">
+                        {% for category in categories %}
+                            <option value="{{ category }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block mb-2">Price (in Cr.₹)</label>
+                    <input type="number" name="price" required class="w-full p-2 border rounded">
+                </div>
+            </div>
+
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Submit Player
+            </button>
+        </form>
+    </div>
+</body>
+</html>

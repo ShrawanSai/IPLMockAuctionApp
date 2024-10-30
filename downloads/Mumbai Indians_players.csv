@@ -1,0 +1,7 @@
+team,player_name,is_indian,is_capped,nationality,category,price
+Mumbai Indians,Jasprit Bumrah,True,True,Indian,Pace Bowler,18.0
+Mumbai Indians,Hardik Pandya,True,True,Indian,All-Rounder,14.0
+Mumbai Indians,Rohit Sharma,True,True,Indian,Batter,11.0
+Mumbai Indians,Surya Kumar Yadav,True,True,Indian,Batter,18.0
+Mumbai Indians,Nehal Wadera,True,False,Indian,All-Rounder,4.0
+Mumbai Indians,Tim David,False,True,Australian,Batter,10.0

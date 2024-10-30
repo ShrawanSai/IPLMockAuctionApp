@@ -1,0 +1,104 @@
+
+<!-- templates/team_breakdown.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ team_name }} Breakdown</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl">{{ team_name }} - Team Breakdown</h1>
+            <div class="space-x-4">
+                <a href="{{ url_for('progress') }}" class="bg-blue-500 text-white px-4 py-2 rounded">
+                    Back to Progress
+                </a>
+                <a href="{{ url_for('download_team', team_name=team_name) }}" 
+                   class="bg-green-500 text-white px-4 py-2 rounded">
+                    Download Team Data
+                </a>
+            </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="text-center">
+                    <h3 class="font-bold text-gray-600">Total Expenditure</h3>
+                    <p class="text-2xl font-bold">Cr.₹{{ team_data.total_spent }}</p>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-bold text-gray-600">Remaining Purse</h3>
+                    <p class="text-2xl font-bold">Cr.₹{{ team_info.purse }}</p>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-bold text-gray-600">Total Players</h3>
+                    <p class="text-2xl font-bold">{{ team_data.total_players }}</p>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-bold text-gray-600">Indian Players</h3>
+                    <p class="text-2xl font-bold">{{ team_data.indian_players }}</p>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-bold text-gray-600">Overseas Players</h3>
+                    <p class="text-2xl font-bold">{{ team_data.non_indian_players }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-8">
+            {% for category, players in [
+                ('Batters', team_data.batters),
+                ('Spin Bowlers', team_data.spin_bowlers),
+                ('Pace Bowlers', team_data.pace_bowlers),
+                ('All-Rounders', team_data.all_rounders),
+                ('Wicket Keepers', team_data.wicket_keepers)
+            ] %}
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <h2 class="text-xl font-bold p-4 bg-gray-50">{{ category }}</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left">Player Name</th>
+                                <th class="px-4 py-3 text-left">Price</th>
+                                <th class="px-4 py-3 text-left">Nationality</th>
+                                <th class="px-4 py-3 text-left">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            {% if players %}
+                                {% for player in players %}
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3">{{ player.player_name }}</td>
+                                    <td class="px-4 py-3">Cr.₹{{ player.price }}</td>
+                                    <td class="px-4 py-3">{{ player.nationality }}</td>
+                                    <td class="px-4 py-3">
+                                        {% if player.is_capped %}
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                                                Capped
+                                            </span>
+                                        {% else %}
+                                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">
+                                                Uncapped
+                                            </span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="4" class="px-4 py-3 text-center text-gray-500">
+                                        No players in this category
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

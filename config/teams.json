@@ -1,0 +1,42 @@
+{
+    "Mumbai Indians": {
+        "purse": 45.0,
+        "logo_path": "/static/logos/mi.png"
+    },
+    "Chennai Super Kings": {
+        "purse": 73.0,
+        "logo_path": "/static/logos/csk.png"
+    },
+    "Royal Challengers Bangalore": {
+        "purse": 120,
+        "logo_path": "/static/logos/rcb.png"
+    },
+    "Kolkata Knight Riders": {
+        "purse": 120,
+        "logo_path": "/static/logos/kkr.png"
+    },
+    "Delhi Capitals": {
+        "purse": 120,
+        "logo_path": "/static/logos/dc.png"
+    },
+    "Punjab Kings": {
+        "purse": 120,
+        "logo_path": "/static/logos/pbks.png"
+    },
+    "Rajasthan Royals": {
+        "purse": 120,
+        "logo_path": "/static/logos/rr.png"
+    },
+    "Sunrisers Hyderabad": {
+        "purse": 120,
+        "logo_path": "/static/logos/srh.png"
+    },
+    "Gujarat Titans": {
+        "purse": 120,
+        "logo_path": "/static/logos/gt.png"
+    },
+    "Lucknow Super Giants": {
+        "purse": 120,
+        "logo_path": "/static/logos/lsg.png"
+    }
+}

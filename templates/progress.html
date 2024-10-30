@@ -1,0 +1,43 @@
+
+<!-- templates/progress.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auction Progress</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl">Current Auction Progress</h1>
+            <a href="{{ url_for('auctioneer') }}" class="bg-blue-500 text-white px-4 py-2 rounded">
+                Back to Auctioneer
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            {% for team_name, team_info in teams.items() %}
+            <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+                <img src="{{ team_info.logo_path }}" alt="{{ team_name }} logo" 
+                     class="w-32 h-32 mx-auto mb-4 object-contain">
+                <h2 class="text-xl font-bold mb-4 text-center">{{ team_name }}</h2>
+                <div class="space-y-2">
+                    <p class="flex justify-between">
+                        <span class="font-medium">Players:</span>
+                        <span>{{ team_info.players_bought }}</span>
+                    </p>
+                    <p class="flex justify-between">
+                        <span class="font-medium">Purse:</span>
+                        <span>Cr.₹{{ team_info.purse }}</span>
+                    </p>
+                </div>
+                <a href="{{ url_for('team_breakdown', team_name=team_name) }}" 
+                   class="block mt-4 text-center bg-green-500 text-white py-2 rounded hover:bg-green-600">
+                    Team Breakdown
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
